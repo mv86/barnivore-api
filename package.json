@@ -1,7 +1,6 @@
 {
   "name": "barnivore_api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "express": "^4.14.0",
@@ -9,8 +8,18 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mv86/barnivore-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mv86/barnivore-api/issues"
+  },
+  "homepage": "https://github.com/mv86/barnivore-api#readme",
+  "description": ""
 }
