@@ -21,7 +21,6 @@ body {
   margin-left: 60px;
   margin-right: 60px;
   margin-top: 5px;
-  display: inline;
   font-size: 15px;
   text-align: center;
   height: 50px;
@@ -31,4 +30,16 @@ body {
 
 #nav-bar > button:focus {
   outline: none;
+}
+
+#options-div {
+  margin-top: 62px;
+  background-color: beige;
+  height: 900px;
+  width: 280px;
+}
+
+#options-div > select {
+  font-size: 20px;
+  margin-top: 50px;
 }
