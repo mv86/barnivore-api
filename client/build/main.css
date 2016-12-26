@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #F6FFFF;
+  background-color: beige;
 }
 
 #nav-bar {
@@ -33,10 +33,11 @@ body {
 }
 
 #options-div {
+  float: left;
   margin-top: 62px;
   background-color: beige;
   height: 900px;
-  width: 280px;
+  /*width: 20%;*/
 }
 
 #options-div > select {
@@ -50,4 +51,12 @@ body {
 
 #brewery-select {
   visibility: hidden;
+}
+
+#brewery-display-div {
+  float: left;
+  margin-top: 62px;
+  background-color: beige;
+  height: 900px;
+  /*width: 80%;*/
 }
