@@ -1,32 +1,32 @@
-var AjaxHelper = require('./helper/ajaxHelper.js');
+var ajaxHelper = require('./helper/ajaxHelper.js');
+var countrySelect = require('./views/countrySelect.js');
 
 var app = function() {
-  alcoholTypeSelect = document.getElementById('type-select');
-  console.log(alcoholTypeSelect)
-  alcoholTypeSelect.onchange = function() {
-    if (alcoholTypeSelect.value !== 'select') {
-    AjaxHelper.makeGetRequest(alcoholTypeSelect.value, populateCountrySelect)
+  countrySelect.populateCountrySelect();
+    alcoholTypeSelect = document.getElementById('type-select');
+    alcoholTypeSelect.onchange = function() {
+      console.log('calling')
+      if (alcoholTypeSelect.value !== 'select') {
+        ajaxHelper.makeGetRequest(alcoholTypeSelect.value, apiInfo)
+      };
     };
-  };
-};
-
-var populateCountrySelect = function(apiData) {
-  breweries = JSON.parse(apiData)
-  // console.log(breweries[21].company.country)
-  // function compare(a,b) {
-  //   console.log('i am being called')
-  //   if (a.company.country < b.company.country)
-  //     return -1;
-  //   if (a.company.country > b.company.country)
-  //     return 1;
-  //   return 0;
-  // }
-  // breweries.sort(compare)
-  // countrySelect = document.getElementById('country-select');
-  breweryCountries = []
-  for (brewery of breweries) {
-    breweryCountries.push(brewery.company.country)
+  apiInfo = function(apiData) {
+    breweries = JSON.parse(apiData)
+    console.log(breweries)
   }
 }
 
 window.onload = app;
+
+
+//  function compare(a, b) {
+//    if (a < b)
+//      return -1;
+//    if (a > b)
+//      return 1;
+//    return 0;
+//  }
+//  breweryCountries.sort(compare)
+//  filteredArray = breweryCountries.filter( function( item, index, inputArray ) {
+//   return inputArray.indexOf(item) == index;
+// });
