@@ -43,3 +43,11 @@ body {
   font-size: 20px;
   margin-top: 50px;
 }
+
+#country-select {
+  visibility: hidden;
+}
+
+#brewery-select {
+  visibility: hidden;
+}

@@ -20,14 +20,13 @@ var countrySelect = {
  "UK", "Ukraine", "USA", "United Kingdom", "Uruguay",
  "Wales", "Venezuela"],
  populateCountrySelect: function() {
-  console.log('being called')
    var select = document.getElementById('country-select');
    for (country of this.countries) {
      option = document.createElement('option')
      option.innerText = country;
      select.appendChild(option);
    };
- } 
+ }
 };
 
 module.exports = countrySelect;
