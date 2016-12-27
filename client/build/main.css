@@ -49,11 +49,11 @@ body {
   visibility: hidden;
 }
 
-#brewery-select {
+#company-select {
   visibility: hidden;
 }
 
-#brewery-display-div {
+#company-display-div {
   float: left;
   margin-top: 62px;
   background-color: beige;
