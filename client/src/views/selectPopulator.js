@@ -1,4 +1,5 @@
 var ajaxHelper = require('../helper/ajaxHelper.js');
+var MapWrapper = require('../views/mapWrapper.js');
 
 var setupApiRequests = function() {
   var countrySelector = document.getElementById('country-select');
@@ -60,6 +61,7 @@ var setupApiRequests = function() {
   };
 };
 var populateCompanySelect = function(companies) {
+  addCompaniesToMap(companies);
   companySelector.style.visibility = 'visible';
   ul = document.getElementById('company-display')
   companySelector.options.length = 1;
@@ -70,7 +72,7 @@ var populateCompanySelect = function(companies) {
     option.innerText = company.company.company_name;
     companySelector.appendChild(option);
   }
-  
+
   companySelector.onchange = function() {
     for (company of companies) {
       if (this.value === company.company.company_name) {
@@ -82,35 +84,23 @@ var populateCompanySelect = function(companies) {
     }
   }
 };
+var addCompaniesToMap = function(companies) {
+  console.log(companies)
+  var map = document.getElementById('map-div')
+  
+  var geo = new google.maps.Geocoder();
+  var country = companies[0].company.country;
+
+  geo.geocode({'address': country}, function (results) {
+    var locationLat = results[0].geometry.location.lat();
+    var locationLng = results[0].geometry.location.lng();
+    var filmLocation = {lat: locationLat, lng: locationLng};
+    console.log(filmLocation)
+    var mainMap = new MapWrapper(map, filmLocation, 10);
+    mainMap.addMarker(filmLocation);
+  });
+
+}
 };
 
 module.exports = setupApiRequests;
-
-// countries: ["Argentina", "Australia", "Austria",
-// "Barbados", "Belgium", "Belize", "Bermuda", "Brazil",
-// "Canada", "Cayman Islands", "Chile", "China", 
-// "Columbia", "Costa Rica", "Croatia", "Cyprus", 
-// "Czech Republic", "Denmark", "Dominican Republic", 
-// "England", "Estonia", "Fiji", "Finland", "France", 
-// "French Guinea", "Georgia", "Germany", "Greece", 
-// "Guatemala", "Holland", "Hong Kong", "Hungary", 
-// "Iceland", "India", "Ireland", "Isle of Man", "Israel", 
-// "Italy", "Jamaica", "Japan", "Kenya", "Latvia", 
-// "Lebanon", "Luxembourg", "Malta", "Maryland", "Mexico", 
-// "Montenegro", "Namibia", "Netherlands", 
-// "New Zealand", "Nicaragua", "Norway", "Palestine", 
-// "Peru", "Philippines", "Poland", "Portugal", 
-// "Puerto Rico", "Romania", "Russia", "Scotland", 
-// "Singaport", "Slovakia", "Slovenia", "South Australia", 
-// "South Africa", "Spain", "Sweden", "Switzerland", 
-// "Tasmania", "Thailand", "The Netherlands", "Turkey", 
-// "UK", "Ukraine", "USA", "United Kingdom", "Uruguay",
-// "Wales", "Venezuela"],
-// populateCountrySelect: function() {
-//   var select = document.getElementById('country-select');
-//   for (country of this.countries) {
-//     option = document.createElement('option')
-//     option.innerText = country;
-//     select.appendChild(option);
-//   };
-// }, 
