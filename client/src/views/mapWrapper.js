@@ -1,5 +1,4 @@
 var MapWrapper = function(container, coords, zoom) {
-  console.log('hello world')
   this.markers = [];
   this.map = new google.maps.Map(container, {
     center: coords,
@@ -8,15 +7,14 @@ var MapWrapper = function(container, coords, zoom) {
 };
 
 MapWrapper.prototype = {
-  addMarker: function(coords) {
-    console.log('being called')
+  addMarker: function(coords, content) {
     var marker = new google.maps.Marker( {
       position: coords,
       map: this.map,
       animation: google.maps.Animation.DROP
     });
     var infowindow = new google.maps.InfoWindow({
-      content: 'test content'
+      content: content
     });
     marker.addListener('click', function() {
       infowindow.open(this, marker);
