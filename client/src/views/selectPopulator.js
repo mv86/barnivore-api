@@ -1,4 +1,5 @@
 var ajaxHelper = require('../helper/ajaxHelper.js');
+var eHelper = require('../helper/elementHelper.js');
 var MapWrapper = require('../views/mapWrapper.js');
 
 var setupApiRequests = function() {
@@ -50,26 +51,25 @@ var setupApiRequests = function() {
    }
    countries.sort(compare)
 
-   var filteredCountries = countries.filter( function( item, index, inputArray ) {
+   var filteredCountries = countries.filter( function(item, index, inputArray) {
     return inputArray.indexOf(item) == index;
   });
 
    for (country of filteredCountries) {
-    option = document.createElement('option')
-    option.innerText = country;
+    option = eHelper.createElement('option', country)
     countrySelector.appendChild(option);
   };
 };
 var populateCompanySelect = function(companies) {
-  addCompaniesToMap(companies);
+  // addCompaniesToMap(companies);
   companySelector.style.visibility = 'visible';
   ul = document.getElementById('company-display')
   companySelector.options.length = 1;
   ul.innerHTML = '';
 
   for (company of companies) {
-    option = document.createElement('option');
-    option.innerText = company.company.company_name;
+    option = eHelper.createElement('option', company.company.company_name);
+    option.style.backgroundColor = company.company.red_yellow_green.toLowerCase();
     companySelector.appendChild(option);
   }
 
@@ -77,29 +77,28 @@ var populateCompanySelect = function(companies) {
     for (company of companies) {
       if (this.value === company.company.company_name) {
         ul.innerHTML = '';
-        liName = document.createElement('li')
-        liName.innerText = company.company.company_name;
+        liName = eHelper.createElement('li', company.company.company_name)
         ul.appendChild(liName);
       }
     }
   }
 };
-var addCompaniesToMap = function(companies) {
-  // console.log(companies)
-  var map = document.getElementById('map-div')
-  var geo = new google.maps.Geocoder();
-  var country = companies[0].company.country;
-  var infoWindow = "There are " + companies.length + " companies selling this alcohol type in " + country + "!"
+// var addCompaniesToMap = function(companies) {
+//   console.log(companies)
+//   var map = document.getElementById('map-div')
+//   var geo = new google.maps.Geocoder();
+//   var country = companies[0].company.country;
+//   var infoWindow = "There are " + companies.length + " companies selling this alcohol type in " + country + "!"
 
-  geo.geocode({'address': country}, function (results) {
-    var locationLat = results[0].geometry.location.lat();
-    var locationLng = results[0].geometry.location.lng();
-    var countryLocation = {lat: locationLat, lng: locationLng};
-    var mainMap = new MapWrapper(map, countryLocation, 6);
-    mainMap.addMarker(countryLocation, infoWindow);
-  });
+//   geo.geocode({'address': country}, function (results) {
+//     var locationLat = results[0].geometry.location.lat();
+//     var locationLng = results[0].geometry.location.lng();
+//     var countryLocation = {lat: locationLat, lng: locationLng};
+//     var mainMap = new MapWrapper(map, countryLocation, 6);
+//     mainMap.addMarker(countryLocation, infoWindow);
+//   });
 
-};
+// };
 };
 
 module.exports = setupApiRequests;
