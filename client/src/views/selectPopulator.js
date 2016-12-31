@@ -8,6 +8,8 @@ var setupApiRequests = function() {
   var alcoholTypeSelect = document.getElementById('type-select');
   var waitOption = document.getElementById('wait');
 
+  alcoholTypeSelect.style.visibility = 'visible';
+
   alcoholTypeSelect.onchange = function() {
     countrySelector.style.visibility = 'hidden';
     companySelector.style.visibility = 'hidden';

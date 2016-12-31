@@ -45,6 +45,10 @@ body {
   margin-top: 50px;
 }
 
+#type-select {
+  visibility: hidden;
+}
+
 #country-select {
   visibility: hidden;
 }
