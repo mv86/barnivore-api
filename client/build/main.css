@@ -1,3 +1,7 @@
+* {
+  border: 1px solid red;
+}
+
 body {
   margin: 0;
   background-color: beige;
@@ -26,9 +30,6 @@ body {
   height: 50px;
   width: 200px;
   background-color: beige;
-}
-
-#nav-bar > button:focus {
   outline: none;
 }
 
@@ -36,8 +37,8 @@ body {
   float: left;
   margin-top: 62px;
   background-color: beige;
-  height: 900px;
-  /*width: 20%;*/
+  height: 400px;
+  width: 28%;
 }
 
 #options-div > select {
@@ -61,8 +62,8 @@ body {
   float: left;
   margin-top: 62px;
   background-color: beige;
-  height: 900px;
-  /*width: 80%;*/
+  height: 400px;
+  width: 40%;
 }
 
 #company-display > li {
@@ -72,9 +73,10 @@ body {
 }
 
 #map-div {
-  margin-top: 162px;
-  height: 500px;
-  width: 500px;
+  float: left;
+  margin-top: 62px;
+  height: 400px;
+  width: 28%;
 }
 
 #view-products-btn {
@@ -85,9 +87,6 @@ body {
   font-size: 18px;
   border-radius: 10px;
   margin-top: 10px;
-}
-
-#view-products-btn > button:focus {
   outline: none;
 }
 

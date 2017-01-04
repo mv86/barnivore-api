@@ -1,5 +1,4 @@
 var selectPopulator = require('./views/selectPopulator.js');
-// var MapWrapper = require('./views/mapWrapper.js');
 
 var app = function() {
   var viewDrinksBtn = document.getElementById('view-drinks-btn');
