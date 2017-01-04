@@ -63,7 +63,7 @@ var setupApiRequests = function() {
   };
 };
 var populateCompanySelect = function(companies) {
-  // addCompaniesToMap(companies);
+  addCompaniesToMap(companies);
   companySelector.style.visibility = 'visible';
   ul = document.getElementById('company-display')
   companySelector.options.length = 1;
@@ -79,28 +79,43 @@ var populateCompanySelect = function(companies) {
     for (company of companies) {
       if (this.value === company.company.company_name) {
         ul.innerHTML = '';
-        liName = eHelper.createElement('li', company.company.company_name)
-        ul.appendChild(liName);
+        liName = eHelper.createElement('li', company.company.company_name);
+        liAddress = eHelper.createElement('li', company.company.address);
+        liCity = eHelper.createElement('li', company.company.city);
+        liStatus = eHelper.createElement('li', company.company.status);
+        liStatus.style.color = company.company.red_yellow_green;
+        liUrl = eHelper.createElement('li');
+        a = eHelper.createElement('a', company.company.url)
+        a.href = company.company.url;
+        a.target = '_blank';
+        liUrl.appendChild(a);
+        viewProductsBtn = eHelper.createElement('button', 'View Products', 'view-products-btn')
+        if (liName.innerText) ul.appendChild(liName);
+        if (liAddress.innerText) ul.appendChild(liAddress);
+        if (liCity.innerText) ul.appendChild(liCity);
+        if (liUrl.innerText) ul.appendChild(liUrl);
+        if (liStatus.innerText) ul.appendChild(liStatus);
+        ul.appendChild(viewProductsBtn);
       }
     }
   }
 };
-// var addCompaniesToMap = function(companies) {
-//   console.log(companies)
-//   var map = document.getElementById('map-div')
-//   var geo = new google.maps.Geocoder();
-//   var country = companies[0].company.country;
-//   var infoWindow = "There are " + companies.length + " companies selling this alcohol type in " + country + "!"
+var addCompaniesToMap = function(companies) {
+  console.log(companies)
+  var map = document.getElementById('map-div')
+  var geo = new google.maps.Geocoder();
+  var country = companies[0].company.country;
+  var infoWindow = "There are " + companies.length + " companies selling this alcohol type in " + country + "!"
 
-//   geo.geocode({'address': country}, function (results) {
-//     var locationLat = results[0].geometry.location.lat();
-//     var locationLng = results[0].geometry.location.lng();
-//     var countryLocation = {lat: locationLat, lng: locationLng};
-//     var mainMap = new MapWrapper(map, countryLocation, 6);
-//     mainMap.addMarker(countryLocation, infoWindow);
-//   });
+  geo.geocode({'address': country}, function (results) {
+    var locationLat = results[0].geometry.location.lat();
+    var locationLng = results[0].geometry.location.lng();
+    var countryLocation = {lat: locationLat, lng: locationLng};
+    var mainMap = new MapWrapper(map, countryLocation, 6);
+    mainMap.addMarker(countryLocation, infoWindow);
+  });
 
-// };
+};
 };
 
 module.exports = setupApiRequests;

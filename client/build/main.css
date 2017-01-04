@@ -65,8 +65,30 @@ body {
   /*width: 80%;*/
 }
 
+#company-display > li {
+  font-size: 25px;
+  font-style: oblique;
+  margin-top: 5px;
+}
+
 #map-div {
   margin-top: 162px;
   height: 500px;
   width: 500px;
 }
+
+#view-products-btn {
+  height: 50px;
+  width: 150px;
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#view-products-btn > button:focus {
+  outline: none;
+}
+
+
