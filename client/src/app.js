@@ -1,4 +1,4 @@
-var selectPopulator = require('./views/selectPopulator.js');
+var alcoholTypePopulator = require('./views/alcoholTypePopulator.js');
 
 var app = function() {
   var optionsDiv = document.getElementById('options-div');
@@ -7,7 +7,7 @@ var app = function() {
   var statisticsBtn = document.getElementById('statistics-btn');
 
   viewDrinksBtn.onclick = function() {
-    selectPopulator();
+    alcoholTypePopulator();
     optionsDiv.scrollIntoView();
   };
 
@@ -18,6 +18,7 @@ var app = function() {
   statisticsBtn.onclick = function() {
 
   };
+  
 };
 
 window.onload = app;

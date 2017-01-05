@@ -1,6 +1,6 @@
 var eHelper = require('../helper/elementHelper.js');
 
-var companyProductsApiRequest = function(companyProducts) {
+var companyProductsApi = function(companyProducts) {
   var productTableBody = document.getElementById('product-table-body');
   var company = JSON.parse(companyProducts);
   var products = company.company.products;
@@ -28,5 +28,4 @@ var companyProductsApiRequest = function(companyProducts) {
 
 };
 
-
-module.exports = companyProductsApiRequest;
+module.exports = companyProductsApi;

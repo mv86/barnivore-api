@@ -5,6 +5,7 @@
 body {
   margin: 0;
   background-color: beige;
+  overflow: hidden;
 }
 
 #nav-bar {
@@ -35,9 +36,10 @@ body {
 
 #options-div {
   float: left;
-  padding-top: 62px;
+  padding-top: 112px;
+  margin-bottom: 200px;
   background-color: beige;
-  height: 400px;
+  height: 500px;
   width: 32%;
 }
 
@@ -60,9 +62,10 @@ body {
 
 #company-display-div {
   float: left;
-  margin-top: 62px;
+  margin-top: 112px;
+  margin-bottom: 200px;
   background-color: beige;
-  height: 400px;
+  height: 500px;
   width: 36%;
 }
 
@@ -74,8 +77,9 @@ body {
 
 #map-div {
   float: left;
-  margin-top: 62px;
-  height: 400px;
+  margin-top: 112px;
+  margin-bottom: 200px;
+  height: 500px;
   width: 28%;
 }
 
@@ -92,14 +96,14 @@ body {
 
 #products-div {
   float: left;
-  margin-top: 150px;
-  height: 400px;
+  margin-top: 75px;
+  height: 500px;
   width: 100%;
 }
 
 #product-table {
-  margin-top: 80px;
-  margin-left: 90px;
+  margin-top: 75px;
+  margin-left: 100px;
   width: 80%;
   text-align: center;
   border: 1px solid black;
@@ -113,7 +117,7 @@ body {
 
 #input-rating {
   outline: none;
-  text-align: right;
+  text-align: center;
 }
 
 
