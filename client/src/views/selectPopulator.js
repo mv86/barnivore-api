@@ -33,7 +33,7 @@ var setupApiRequests = function() {
     countrySelector.style.visibility = 'visible';
     countrySelector.onchange = function() {
       var selectedCountryCompanies = [];
-      for (company of companies) {
+      for (var company of companies) {
         if (this.value === company.company.country) {
           selectedCountryCompanies.push(company);
         };
@@ -43,7 +43,7 @@ var setupApiRequests = function() {
   };
   var populateCountrySelect = function(companies) {
     var countries = [];
-    for (company of companies) {
+    for (var company of companies) {
       if (company.company.country !== "") {
         countries.push(company.company.country);
       };
@@ -74,15 +74,16 @@ var populateCompanySelect = function(companies) {
   companyDisplay.style.visibility = 'visible';
   companyDisplay.innerHTML = '';
 
-  for (company of companies) {
+  for (var company of companies) {
     option = eHelper.createElement('option', company.company.company_name);
     option.style.backgroundColor = company.company.red_yellow_green.toLowerCase();
     companySelector.appendChild(option);
   }
 
   companySelector.onchange = function() {
-    for (company of companies) {
+    for (var company of companies) {
       if (this.value === company.company.company_name) {
+        var productsApi = "http://www.barnivore.com/company/" + company.company.id + ".json"
         companyDisplay.innerHTML = '';
         liName = eHelper.createElement('li', company.company.company_name);
         liAddress = eHelper.createElement('li', company.company.address);
@@ -96,9 +97,8 @@ var populateCompanySelect = function(companies) {
         liUrl.appendChild(a);
         viewProductsBtn = eHelper.createElement('button', 'View Products', 'view-products-btn')
         viewProductsBtn.onclick = function() {
-          productDiv = document.getElementById('products-div');
+          var productDiv = document.getElementById('products-div');
           productDiv.scrollIntoView();
-          var productsApi = "http://www.barnivore.com/company/" + company.company.id + ".json"
           ajaxHelper.makeGetRequest(productsApi, companyProduct)
         }
         if (liName.innerText) companyDisplay.appendChild(liName);

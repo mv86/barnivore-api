@@ -35,7 +35,7 @@ body {
 
 #options-div {
   float: left;
-  margin-top: 62px;
+  padding-top: 62px;
   background-color: beige;
   height: 400px;
   width: 32%;
@@ -95,6 +95,25 @@ body {
   margin-top: 150px;
   height: 400px;
   width: 100%;
+}
+
+#product-table {
+  margin-top: 80px;
+  margin-left: 90px;
+  width: 80%;
+  text-align: center;
+  border: 1px solid black;
+}
+
+#add-product-btn {
+  width: 100px;
+  border-radius: 15px;
+  background-color: beige;
+}
+
+#input-rating {
+  outline: none;
+  text-align: right;
 }
 
 
