@@ -1,11 +1,14 @@
 var ajaxHelper = require('../helper/ajaxHelper.js');
 var eHelper = require('../helper/elementHelper.js');
 var MapWrapper = require('../views/mapWrapper.js');
+var companyProduct = require('../views/companyProducts.js');
 
 var setupApiRequests = function() {
   var countrySelector = document.getElementById('country-select');
   var companySelector = document.getElementById('company-select');
   var alcoholTypeSelect = document.getElementById('type-select');
+  var companyDisplay = document.getElementById('company-display')
+  var map = document.getElementById('map-div')
   var waitOption = document.getElementById('wait');
 
   alcoholTypeSelect.style.visibility = 'visible';
@@ -13,14 +16,16 @@ var setupApiRequests = function() {
   alcoholTypeSelect.onchange = function() {
     countrySelector.style.visibility = 'hidden';
     companySelector.style.visibility = 'hidden';
+    companyDisplay.style.visibility = 'hidden';
+    map.style.visibility = 'hidden';
     if (alcoholTypeSelect.value !== 'select') {
       waitOption.hidden = false;
-      ajaxHelper.makeGetRequest(alcoholTypeSelect.value, apiInfo)
+      ajaxHelper.makeGetRequest(alcoholTypeSelect.value, companyApiInfo)
       alcoholTypeSelect.options.selectedIndex = 4;
       waitOption.hidden = true;
     };
   };
-  var apiInfo = function(apiData) {
+  var companyApiInfo = function(apiData) {
     var companies = JSON.parse(apiData)
     populateCountrySelect(companies);
     alcoholTypeSelect.options.selectedIndex = 0;
@@ -63,11 +68,11 @@ var setupApiRequests = function() {
   };
 };
 var populateCompanySelect = function(companies) {
-  addCompaniesToMap(companies);
+  populateMap(companies);
   companySelector.style.visibility = 'visible';
-  ul = document.getElementById('company-display')
   companySelector.options.length = 1;
-  ul.innerHTML = '';
+  companyDisplay.style.visibility = 'visible';
+  companyDisplay.innerHTML = '';
 
   for (company of companies) {
     option = eHelper.createElement('option', company.company.company_name);
@@ -78,7 +83,7 @@ var populateCompanySelect = function(companies) {
   companySelector.onchange = function() {
     for (company of companies) {
       if (this.value === company.company.company_name) {
-        ul.innerHTML = '';
+        companyDisplay.innerHTML = '';
         liName = eHelper.createElement('li', company.company.company_name);
         liAddress = eHelper.createElement('li', company.company.address);
         liCity = eHelper.createElement('li', company.company.city);
@@ -90,19 +95,24 @@ var populateCompanySelect = function(companies) {
         a.target = '_blank';
         liUrl.appendChild(a);
         viewProductsBtn = eHelper.createElement('button', 'View Products', 'view-products-btn')
-        if (liName.innerText) ul.appendChild(liName);
-        if (liAddress.innerText) ul.appendChild(liAddress);
-        if (liCity.innerText) ul.appendChild(liCity);
-        if (liUrl.innerText) ul.appendChild(liUrl);
-        if (liStatus.innerText) ul.appendChild(liStatus);
-        ul.appendChild(viewProductsBtn);
+        viewProductsBtn.onclick = function() {
+          productDiv = document.getElementById('products-div');
+          productDiv.scrollIntoView();
+          var productsApi = "http://www.barnivore.com/company/" + company.company.id + ".json"
+          ajaxHelper.makeGetRequest(productsApi, companyProduct)
+        }
+        if (liName.innerText) companyDisplay.appendChild(liName);
+        if (liAddress.innerText) companyDisplay.appendChild(liAddress);
+        if (liCity.innerText) companyDisplay.appendChild(liCity);
+        if (liUrl.innerText) companyDisplay.appendChild(liUrl);
+        if (liStatus.innerText) companyDisplay.appendChild(liStatus);
+        companyDisplay.appendChild(viewProductsBtn);
       }
     }
   }
 };
-var addCompaniesToMap = function(companies) {
-  console.log(companies)
-  var map = document.getElementById('map-div')
+var populateMap = function(companies) {
+  map.style.visibility = 'visible';
   var geo = new google.maps.Geocoder();
   var country = companies[0].company.country;
   var infoWindow = "There are " + companies.length + " companies selling this alcohol type in " + country + "!"
@@ -114,7 +124,6 @@ var addCompaniesToMap = function(companies) {
     var mainMap = new MapWrapper(map, countryLocation, 6);
     mainMap.addMarker(countryLocation, infoWindow);
   });
-
 };
 };
 

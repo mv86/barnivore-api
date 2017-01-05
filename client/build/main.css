@@ -1,6 +1,6 @@
-* {
+/** {
   border: 1px solid red;
-}
+}*/
 
 body {
   margin: 0;
@@ -38,7 +38,7 @@ body {
   margin-top: 62px;
   background-color: beige;
   height: 400px;
-  width: 28%;
+  width: 32%;
 }
 
 #options-div > select {
@@ -63,7 +63,7 @@ body {
   margin-top: 62px;
   background-color: beige;
   height: 400px;
-  width: 40%;
+  width: 36%;
 }
 
 #company-display > li {
@@ -88,6 +88,13 @@ body {
   border-radius: 10px;
   margin-top: 10px;
   outline: none;
+}
+
+#products-div {
+  float: left;
+  margin-top: 150px;
+  height: 400px;
+  width: 100%;
 }
 
 
