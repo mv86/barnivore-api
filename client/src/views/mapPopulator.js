@@ -1,4 +1,4 @@
-var MapWrapper = require('../views/mapWrapper.js');
+var MapWrapper = require('./mapWrapper.js');
 
 var populateMap = function(companies) {
   var map = document.getElementById('map-div');
@@ -13,8 +13,7 @@ var populateMap = function(companies) {
     var countryLocation = {lat: locationLat, lng: locationLng};
     var mainMap = new MapWrapper(map, countryLocation, 6);
     mainMap.addMarker(countryLocation, infoWindow);
-  });
-  
+  }); 
 };
 
 module.exports = populateMap;

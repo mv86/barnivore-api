@@ -109,15 +109,4 @@ body {
   border: 1px solid black;
 }
 
-#add-product-btn {
-  width: 100px;
-  border-radius: 15px;
-  background-color: beige;
-}
-
-#input-rating {
-  outline: none;
-  text-align: center;
-}
-
 

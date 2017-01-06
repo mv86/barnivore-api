@@ -27,7 +27,6 @@ var populateCountrySelect = function(companies) {
     option = eHelper.createElement('option', country)
     countrySelector.appendChild(option);
   };
-
 };
 
 module.exports = populateCountrySelect;

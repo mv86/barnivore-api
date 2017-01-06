@@ -1,6 +1,6 @@
 var ajaxHelper = require('../helper/ajaxHelper.js');
 var eHelper = require('../helper/elementHelper.js');
-var companyProduct = require('../views/companyProducts.js');
+var companyProducts = require('./companyProducts.js');
 
 var populateCompanySelect = function(companies) {
   var companySelector = document.getElementById('company-select');
@@ -37,7 +37,7 @@ var populateCompanySelect = function(companies) {
         viewProductsBtn.onclick = function() {
           var productDiv = document.getElementById('products-div');
           productDiv.scrollIntoView();
-          ajaxHelper.makeGetRequest(productsApi, companyProduct)
+          ajaxHelper.makeGetRequest(productsApi, companyProducts)
         }
 
         if (liName.innerText) companyDisplay.appendChild(liName);

@@ -1,7 +1,7 @@
 var ajaxHelper = require('../helper/ajaxHelper.js');
-var countryPopulator = require('../views/countryPopulator.js');
-var companyPopulator = require('../views/companyPopulator.js');
-var mapPopulator = require('../views/mapPopulator.js');
+var countryPopulator = require('./countryPopulator.js');
+var companyPopulator = require('./companyPopulator.js');
+var mapPopulator = require('./mapPopulator.js');
 
 var setupApiRequests = function() {
   var countrySelector = document.getElementById('country-select');
@@ -23,8 +23,7 @@ var setupApiRequests = function() {
       ajaxHelper.makeGetRequest(alcoholTypeSelect.value, companyApiInfo)
       alcoholTypeSelect.options.selectedIndex = 4;
       waitOption.hidden = true;
-    };
-    
+    }; 
   };
 
   var companyApiInfo = function(apiData) {
@@ -44,7 +43,6 @@ var setupApiRequests = function() {
       companyPopulator(selectedCountryCompanies);
       mapPopulator(selectedCountryCompanies);
     };
-
   };
 };
 
